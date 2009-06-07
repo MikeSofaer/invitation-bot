@@ -24,8 +24,8 @@ def InviteAll(context):
   root_wavelet = context.GetRootWavelet()
   participants = db.GqlQuery("SELECT * FROM Participant ORDER BY date DESC")
   for participant in participants:
-    value = participant.email_to_add
-    if value != None and participant.added == False:
+    value = participant.email_to_add.lower
+    if value != None and value.endswith('@wavesandbox.com'):
       output = root_wavelet.AddParticipant(cgi.escape(value))
       participant.added = True
       participant.put
