@@ -25,7 +25,7 @@ def InviteAll(context):
   participants = db.GqlQuery("SELECT * FROM Participant ORDER BY date DESC")
   for participant in participants:
     value = participant.email_to_add
-    if ((value != None) and (str(value).lower().endswith("@wavesandbox.com"))):
+    if ((value != None) and (str(value).lower().endswith("@wavesandbox.com") or str(value).lower().endswith("gwave.com"))):
       output = root_wavelet.AddParticipant(cgi.escape(str(value).lower()))
       participant.added = True
       participant.put
